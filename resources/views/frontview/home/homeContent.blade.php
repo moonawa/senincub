@@ -1,0 +1,1 @@
+@extends('frontview.master')

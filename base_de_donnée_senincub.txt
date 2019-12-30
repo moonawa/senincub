@@ -1,0 +1,19 @@
+	
+
+entreprises(id, nom, tel, mail, secteur, status) //Sadarwa, les incubés sont les entreprises
+
+utilisateurs(id, login,mot de passe, nom, tel, mail, metier, status) //le super-admin, les admins, les incubés et les user_incubés sont les users du système
+
+utilisateurs_entreprises(entreprises_id, utilisateurs_id)// les admins sont relié à un ou plusieurs incubés 
+
+role(id, name) // on aura les roles: super-admin, admin, incubé, user-incubé
+
+utilisateurs_role(utilisateurs_id, role_id) // chaque user aura un role ici
+
+client(id, nom, tel, mail, secteur) //les clients des incubés
+
+client_entreprises(entreprises_id, client_id) //dès qu'on crée un client, cette table sera remplie
+
+inscris(id, nom_complet, telephone, mail, nom_projet, secteur, ) //ceux qui se sont inscris sur le site et qui veulent etre incubés sont les inscris
+
+
