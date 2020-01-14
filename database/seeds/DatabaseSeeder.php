@@ -13,37 +13,48 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        DB::table('utilisateurs')->insert([
-            'login' => 'Moubarack',
-            'password' => bcrypt( '123456'),
-            'nom_complet' => 'Cheikh Moubarack Wade',
-            'telephone' => '778343595',
-            'mail' =>'moubarakwade@gmail.com',
-            'metier' => 'Manager',
+        DB::table('entreprises')->insert([
+            'nom_entreprise' => 'SADARWAGROUP',
+            'telephone' => '338643886',
+            'mail' => 'sadarwagroup@gmail.com',
+            'secteur' => 'Digital'        
         ]);
-
+        DB::table('users')->insert([
+            'name' => 'Cheikh Moubarack Wade',
+            'email' =>'moubarackwade@gmail.com',
+            'password' => bcrypt( '123456'),
+            'telephone' => '778343595',
+        ]);
+        DB::table('entreprises_user')->insert([
+            'entreprises_id' => '1',    
+            'user_id' => '1'  
+        ]);
         DB::table('roles')->insert([
             'nom' => 'SUPERADMIN',          
         ]);
-         DB::table('roles')->insert([
-             'nom' => 'ADMIN',          
-         ]);
+        DB::table('roles_user')->insert([
+            'roles_id' => '1',    
+            'user_id' => '1'  
+        ]);
+        //  DB::table('roles')->insert([
+        //      'nom' => 'ADMIN',          
+        //  ]);
+
+         DB::table('metiers')->insert([
+            'nom' => 'Manager',          
+        ]);
+
+        DB::table('metier_user')->insert([
+            'metier_id' => '1',    
+            'user_id' => '1'  
+        ]);
         // DB::table('roles')->insert([
         //     'nom' => 'INCUBE',          
         // ]);
         // DB::table('roles')->insert([
         //     'nom' => 'USERINCUBE',          
         // ]);
-        DB::table('role_utilisateurs')->insert([
-            'role_id' => '1', 
-            'utilisateurs_id' => '1',          
-        ]);
-
-        DB::table('entreprises')->insert([
-            'nom_entreprise' => 'SADARWAGROUP',
-            'telephone' => '338643886',
-            'mail' => 'sadarwagroup@gmail.com',
-            'secteur' => 'Digital',           
-        ]);
+       
+        
     }
 }

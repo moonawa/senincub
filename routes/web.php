@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 });
-Route::get('/indexx', function () {
+Route::get('/index', function () {
     return view('index');
 });
 Route::get('/user/{id?}', function ($id="Pas de donnée") {
@@ -27,11 +27,24 @@ Route::get('/user/{id?}', function ($id="Pas de donnée") {
 
 Route::redirect('/here', '/');
 
-Route::get("/incube", "Incube@index");
+//Route::get("/incube", "Incube@index");
 
-Route::get('/index', 'FrontController@index');
+//Route::get('/index', 'FrontController@index');
 
 Route::get('/db', 'Users@dbCheck');
 
-// Route::post('submit', 'Users@save');
-Route::get('User/create', 'Users@create')->name('user.create');
+//Route::post('submit', 'Users@save');
+//Route::get('User/create', 'Users@create')->name('user.create');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::get('/search', ['uses' => 'EntrepriseController@recherche', 'as' => 'search']);
+
+Route::resource('entreprises', 'EntrepriseController');
+
+Route::get('/search', 'EntrepriseController@search');

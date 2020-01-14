@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Inscris;
 use App\Role;
+use App\Roles;
+use App\User;
 use App\Utilisateurs;
 
 class Users extends Controller
@@ -29,21 +31,33 @@ class Users extends Controller
     //     echo $inscris->save();
     // }
 
-    public function create(Request $request)
-    {
-        $user = new Utilisateurs();
-        $user->login = 'Moubarack';
-        $user->password='123456';    
-        $user->nom_complet='Cheikh Moubarack Wade';
-        $user->telephone='778343595';    
-        $user->mail='moubarakwade@gmail.com';
-        $user->metier='Manager';    
-        //$user->status='Pas de status';
-        $user->save(); 
+    // public function create(Request $request)
+    // {
+    //     $user = new Utilisateurs();
+    //     $user->login = 'Moubarack';
+    //     $user->password='123456';    
+    //     $user->nom_complet='Cheikh Moubarack Wade';
+    //     $user->telephone='778343595';    
+    //     $user->mail='moubarakwade@gmail.com';
+    //     $user->metier='Manager';    
+    //     //$user->status='Pas de status';
+    //     $user->save(); 
         
-        $role = Role::find([1, 2]);
-        $user->role()->attach($role); 
-        return 'Success';
-    }
+    //     $role = Role::find([1, 2]);
+    //     $user->role()->attach($role); 
+    //     return 'Success';
+    // }
+
+    // function save(Request $request){
+    //     $user = new User();
+    //     $user->name = $request->name;
+    //     $user->email = $request->email;
+    //     $user->password = $request->password;
+    //     $user->telephone = $request->telephone;
+    //     echo $user->save();
+
+    //     $role = new Roles();
+
+    // }
 }
  

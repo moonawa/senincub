@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>SenIncub</title>
     <link rel="icon" type="image/png" href="../img/logo-senincub.png" />
@@ -143,7 +144,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
+                            <a href="#z">
                                 <div>
                                     <p>
                                         <strong>Task 3</strong>
@@ -248,18 +249,40 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
+                    <ul class="dropdown-menu dropdown-user">  
+                    
+                     <li class="nav-item dropdown">
+                                <!-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre> -->
+                                    {{ Auth::user()->name }} 
+                                    <!-- <span class="caret"></span>
+                                </a>   -->
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                     <!-- <li>           
+                        <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>  
+                     </li>-->
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                        <!-- <li>                      
+                            <a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li> -->
+                        
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
+               
             </ul>
             <!-- /.navbar-top-links -->
 
@@ -688,9 +711,9 @@
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="../vendor/raphael/raphael.min.js"></script>
+   <script src="../vendor/raphael/raphael.min.js"></script>
     <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>
+    <script src="../data/morris-data.js"></script> 
 
     <!-- Custom Theme JavaScript -->
     <script src="../js/sb-admin-2.js"></script>

@@ -6,10 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entreprises extends Model
 {
-     public function utilisateurs()
-     {
-         return $this->belongsToMany(Utilisateurs::class);
-
-        
-     }
+    protected $fillable = [
+        'nom_entreprise',
+        'telephone',
+        'mail',
+        'secteur',
+       
+       ];
+    /**
+     * The users that belong to the entreprise.
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }
