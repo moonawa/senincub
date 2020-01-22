@@ -43,8 +43,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/search', ['uses' => 'EntrepriseController@recherche', 'as' => 'search']);
+Route::get('/search', ['uses' => 'EntrepriseController@recherche', 'as' => 'search']);
 
 Route::resource('entreprises', 'EntrepriseController');
 
 Route::get('/search', 'EntrepriseController@search');
+
+Route::get('/search', 'EntrepriseController@search');
+
+Route::resource('inscris', 'InscrisController');
+
+Route::resource('secteurs', 'SecteurController');
+
+Route::resource('metiers', 'MetierController');
+
+Route::get('eseuser','EntrepriseController@eseuser' )->name('eseuser');

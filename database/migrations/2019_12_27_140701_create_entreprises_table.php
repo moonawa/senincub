@@ -18,7 +18,7 @@ class CreateEntreprisesTable extends Migration
             $table->string('nom_entreprise');
             $table->string('telephone')->unique();  
             $table->string('mail')->unique();
-            $table->string('secteur');    
+            $table->integer('secteur_id')->unsigned();
             $table->string('status')->nullable();
             $table->timestamps();
         });

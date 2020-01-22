@@ -19,7 +19,7 @@ class CreateInscrisTable extends Migration
             $table->string('telephone')->unique();   
             $table->string('mail')->unique();
             $table->string('nom_projet')->unique();   
-            $table->string('secteur');
+            $table->integer('secteur_id')->unsigned(); 
             $table->timestamps();
         });
     }

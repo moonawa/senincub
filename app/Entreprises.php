@@ -10,7 +10,7 @@ class Entreprises extends Model
         'nom_entreprise',
         'telephone',
         'mail',
-        'secteur',
+        'secteur_id',
        
        ];
     /**
@@ -19,5 +19,9 @@ class Entreprises extends Model
     public function users()
     {
         return $this->belongsToMany('App\User');
+    }
+    public function secteurs()
+    {
+        return $this->belongsTo('App\Secteur');
     }
 }

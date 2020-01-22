@@ -118,10 +118,7 @@
                             @enderror                           
                         </div>
 
-                        <form method="get" action="{{ route('search') }}" class="navbar-search pull-left">
-                            <input name="q" type="search" class="search-query" placeholder="Rechercher">
-                        </form>
-
+                     
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

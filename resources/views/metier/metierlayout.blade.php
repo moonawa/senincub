@@ -19,6 +19,7 @@
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     }
+
     .btna{
       background: #27245f;
       color: white;

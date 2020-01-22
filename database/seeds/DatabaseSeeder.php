@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             'nom_entreprise' => 'SADARWAGROUP',
             'telephone' => '338643886',
             'mail' => 'sadarwagroup@gmail.com',
-            'secteur' => 'Digital'        
+            'secteur_id' => '1',
+                   
         ]);
         DB::table('users')->insert([
             'name' => 'Cheikh Moubarack Wade',
@@ -32,28 +33,36 @@ class DatabaseSeeder extends Seeder
         DB::table('roles')->insert([
             'nom' => 'SUPERADMIN',          
         ]);
+        DB::table('roles')->insert([
+            'nom' => 'ADMIN',          
+        ]);
+        DB::table('roles')->insert([
+            'nom' => 'INCUBE',          
+        ]);
+        DB::table('roles')->insert([
+            'nom' => 'USERINCUBE',          
+        ]);
         DB::table('roles_user')->insert([
             'roles_id' => '1',    
             'user_id' => '1'  
         ]);
-        //  DB::table('roles')->insert([
-        //      'nom' => 'ADMIN',          
-        //  ]);
+        
 
-         DB::table('metiers')->insert([
+        DB::table('metiers')->insert([
             'nom' => 'Manager',          
+        ]);
+        DB::table('metiers')->insert([
+            'nom' => 'Developpeur',          
         ]);
 
         DB::table('metier_user')->insert([
             'metier_id' => '1',    
             'user_id' => '1'  
         ]);
-        // DB::table('roles')->insert([
-        //     'nom' => 'INCUBE',          
-        // ]);
-        // DB::table('roles')->insert([
-        //     'nom' => 'USERINCUBE',          
-        // ]);
+        DB::table('secteurs')->insert([
+            'nom' => 'Digital',          
+        ]);
+        
        
         
     }

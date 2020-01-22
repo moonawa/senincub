@@ -14,9 +14,9 @@ class CreateEntreprisesUserTable extends Migration
     public function up()
     {
         Schema::create('entreprises_user', function (Blueprint $table) {
-            //$table->bigIncrements('id');
             $table->integer('entreprises_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->timestamps();
         });
     }
 

@@ -34,12 +34,14 @@
     </div>
 
     <div class="col-md-12">
-        <div class="form-group">
-            <strong>Secteur</strong>
-            <input type="text" class="form-control" col="4" name="secteur" placeholder="Enter secteur"></input>
-            <span class="text-danger">{{ $errors->first('secteur') }}</span>
-        </div>
-    </div>
+              <select name="secteur_id">
+                {{-- <option value="" >Secteur</option> --}}
+                @foreach(App\Secteur::get() as $secteur)
+               
+                <option name="secteur_id" value="{{$secteur->id}}">{{$secteur->nom}}</option>
+                @endforeach
+              </select>
+          </div> 
 
     <div class="col-md-12">
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -47,4 +49,5 @@
 </div>
  
 </form>
+<form action=""></form>
 @endsection

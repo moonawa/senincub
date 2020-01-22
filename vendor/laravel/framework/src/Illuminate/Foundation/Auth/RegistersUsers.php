@@ -20,6 +20,8 @@ trait RegistersUsers
         return view('auth.register');
     }
 
+    
+
     /**
      * Handle a registration request for the application.
      *
