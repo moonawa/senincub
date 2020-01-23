@@ -1,8 +1,36 @@
 @extends('entreprise.entrepriselayout')
    
 @section('content')
+<div class="row ">
+<div class="col-md-6">
 <a href="{{ route('entreprises.create') }}" class="btn btna mb-2">Add</a> 
-  <br>
+</div>
+<div class="col-md-6">
+  <form action="/search" method="GET">
+   <div class="input-group">
+      <input type="search" name="search" placeholder="recherche par nom " class="form-control">
+      <span class="input-group-prepend">
+         <button type="submit" class="btn btna">Rechercher</button>
+      </span>
+   </div>
+  </form>
+  </div>
+  </div>
+ <br>
+
+  
+<form action="/alloue" method="GET">
+<input type="text" name="email" placeholder="email user">
+<input type="text" name="emails" placeholder="email entreprise">
+   <button type="submit" class="btn btna">Alloue</button>
+</form>
+<br>
+<form action="/detach" method="GET">
+<input type="text" name="email" placeholder="email user">
+<input type="text" name="emails" placeholder="email entreprise">
+   <button type="submit" class="btn btna">Detache</button>
+</form>
+
    <div class="row">
         <div class="col-12">
 

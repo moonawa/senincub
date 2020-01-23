@@ -130,11 +130,17 @@ class EntrepriseController extends Controller
         return Redirect::to('entreprises')->with('success','Entreprise deleted successfully');
     }
   
+    /**
+     * Search a entreprise.
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Entreprises $entreprise
+    
+     * @return \Illuminate\Http\Response
+     */
     public function search(Request $request){
-        $searc = $request->get('entreprises.list');
-        Entreprises::where('nom_entreprise', 'like', '%'.$searc.'%');
-        //return view ('show', ['entreprises' => $entreprises]);
-        return Redirect::to('entreprises');
+        $search = $request->get('search');
+        $entreprise = DB::table('entreprises')->where('nom_entreprise', 'like', '%'.$search.'%')->paginate(5);
+        return view ('entreprise.entrepriselist', ['entreprises' => $entreprise]);
     }
      
     /**
@@ -173,5 +179,30 @@ class EntrepriseController extends Controller
             
             return $user;
         }
-    
-}
+        //function recherche par mail et ensuite il te transmet la lign ede user qui correspond à cet email
+        public function rechercheUser(Request $request){
+            $search = $request->get('rechercheUser');
+            $user = DB::table('users')->where('email', 'like', '%'.$search.'%')->paginate(5);
+            return view('entreprise.entrpriseadmin');
+        }
+        //allouer  un admin à une entreprise incubé
+        public function alloue(Request $request){
+            
+        $email= $_GET["email"];
+        $emails= $_GET["emails"];
+        $post = \App\User::whereEmail($email)->first();
+        $category_id = \App\Entreprises::whereMail($emails)->first()->id;
+        $post->entreprises()->attach($category_id);
+        return 'weiiiiiiiiiiii';
+        }
+        //enlever la relation "admin - entreprise incubé"
+        public function detach(Request $request){
+            
+            $email= $_GET["email"];
+            $emails= $_GET["emails"];
+            $post = \App\User::whereEmail($email)->first();
+            $category_id = \App\Entreprises::whereMail($emails)->first()->id;
+            $post->entreprises()->detach($category_id);
+            return 'weiiiiiiiiiiii';
+            }
+    }
