@@ -22,8 +22,11 @@
                     <td>{{ $product->telephone }}</td>
                     <td>{{ $product->mail }}</td>
                     <td>{{ $product->nom_projet }}</td>
-                    <td><a href="{{ route('entreprises.edit',$product->id)}}" class="btn btna">Sélectionner</a></td>
+                    <td>
+                     <form action="{{ route('inscris.edit')}}" method="GET"><input name="email" class="btn btna"><a href="mailto:$email "></a> Sélectionner</form>
+                   </td>
                  </tr>
+
                  @endforeach
               </tbody>
              </table>

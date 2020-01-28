@@ -75,19 +75,7 @@
                             </div>
                         </div>
 
-                        <div>
-                            <select class="browser-default custom-select custom-select-lg mb-3  @error('role') is-invalid @enderror" name="role">
-                                {{-- <option selected>Role</option> --}}
-                                @foreach ($role as $roles)
-                            <option value="{{$roles->id}}">{{$roles->nom}}</option>
-                                @endforeach
-                            </select>
-                            @error('role')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror                           
-                        </div>
+                       
 
            
                         <div>

@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -25,9 +26,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
-
-    
+    use RegistersUsers;  
     /**
      * Where to redirect users after registration.
      *
@@ -46,7 +45,6 @@ class RegisterController extends Controller
     }
 
     //use ThrottlesLogins;
-
     /**
      * Show the application's login form.
      *
@@ -57,10 +55,8 @@ class RegisterController extends Controller
         $role = Roles::all();
         $metier = Metier::all();
         $entreprise = Entreprises::all();
-        return view('auth.register', compact('role', 'metier', 'entreprise'));
-        
+        return view('auth.register', compact('role','metier', 'entreprise'));        
     }
-
 
     /**
      * Get a validator for an incoming registration request.
@@ -80,13 +76,12 @@ class RegisterController extends Controller
 
     /**
      * Create a new user instance after a valid registration.
-     *
      * @param  array  $data
      * @return \App\User
      */
     protected function create(array $data)
     {
-        $role = request('role');
+        $role = DB::table('roles')->where('nom', 'ADMIN')->value('id');
         $metier = request('metier');
         $entreprise = request('entreprise');
         $user = User::create([
@@ -94,13 +89,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'telephone' => $data['telephone'],
-        ]);
-
-        $user->roles()->attach($role);
+            'role_id' => $role
+        ]); 
         $user->metiers()->attach($metier);
         $user->entreprises()->attach($entreprise);
-
         return $user;
-
     }
 }

@@ -20,19 +20,21 @@ class DatabaseSeeder extends Seeder
             'secteur_id' => '1',
                    
         ]);
+        DB::table('roles')->insert([
+            'nom' => 'SUPERADMIN',          
+        ]);
         DB::table('users')->insert([
             'name' => 'Cheikh Moubarack Wade',
             'email' =>'moubarackwade@gmail.com',
             'password' => bcrypt( '123456'),
             'telephone' => '778343595',
+            'role_id'=> '1',
         ]);
         DB::table('entreprises_user')->insert([
             'entreprises_id' => '1',    
             'user_id' => '1'  
         ]);
-        DB::table('roles')->insert([
-            'nom' => 'SUPERADMIN',          
-        ]);
+        
         DB::table('roles')->insert([
             'nom' => 'ADMIN',          
         ]);
@@ -41,10 +43,6 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('roles')->insert([
             'nom' => 'USERINCUBE',          
-        ]);
-        DB::table('roles_user')->insert([
-            'roles_id' => '1',    
-            'user_id' => '1'  
         ]);
         
 

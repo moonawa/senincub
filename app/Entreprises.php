@@ -24,4 +24,8 @@ class Entreprises extends Model
     {
         return $this->belongsTo('App\Secteur');
     }
+    public function clients()
+    {
+        return $this->belongsToMany('App\Client');
+    }
 }

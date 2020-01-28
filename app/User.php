@@ -17,10 +17,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'telephone',
+        'name', 'email', 'password', 'telephone', 'role_id'
     ];
 
-    /**
+    /**entreprises
      * The attributes that should be hidden for arrays.
      *
      * @var array
@@ -38,13 +38,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-     /**
-     * The roles that belong to the user.
-     */
-    public function roles()
-    {
-        return $this->belongsToMany('App\Roles');
-    }
 
     /**
      * The metier that belong to the user.
@@ -60,5 +53,14 @@ class User extends Authenticatable
     public function entreprises()
     {
         return $this->belongsToMany('App\Entreprises');
+    }
+    /**
+     * One to Many relation
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function roles()
+    {
+        return $this->belongsTo('App\Roles');
     }
 }

@@ -30,7 +30,7 @@ class Secteur extends Model
 
     public function clients()
     {
-        return $this->hasMany('App\Clients');
+        return $this->hasMany('App\Client');
     }
  
    

@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Roles extends Model
 {
+   
     /**
-     * The users that belong to the role.
+     * Has Many relation
+     *
+     * @return Illuminate\Database\Eloquent\Relations\hasMany
      */
     public function users()
     {
-        return $this->belongsToMany('App\User');
+        return $this->hasMany('App\User');
     }
 }

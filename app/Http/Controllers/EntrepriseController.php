@@ -134,7 +134,6 @@ class EntrepriseController extends Controller
      * Search a entreprise.
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Entreprises $entreprise
-    
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request){
@@ -170,10 +169,10 @@ class EntrepriseController extends Controller
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
                 'telephone' => $request['telephone'],
+                'role_id'=> $role,
             ]);
 
             
-            $user->roles()->attach($role);
             $user->metiers()->attach($metier);
             $user->entreprises()->attach($entreprise);
             
