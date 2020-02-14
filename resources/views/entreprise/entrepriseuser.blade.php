@@ -1,15 +1,159 @@
-@extends('entreprise.entrepriselayout')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<h1>Ajoutez Un Utilisateur à l'entreprise incubé que vous venez de créer</h1>
-<br>
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Senincub</title>
+  <link rel="icon" type="image/png" href="../img/logo-senincub.png" />
+  <!-- Custom fonts for this template-->
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <!-- Custom styles for this template-->
+  <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/super">
+  <div class="sidebar-brand-icon rotate-n-15">
+    <i class="fas fa-laugh-wink"></i>
+  </div>
+  <div class="sidebar-brand-text mx-3">Super Admin</div>
+</a>
+
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
+
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active">
+  <a class="nav-link" href="/super">
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+    <span>Tableau de Bord</span></a>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+
+<!-- Heading -->
+<div class="sidebar-heading">
+  Interface
+</div>
+
+<!-- Nav Item - Utilities Collapse Menu -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+    <i class="fas fa-fw fa-wrench"></i>
+    <span>Créer</span>
+  </a>
+  <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <h6 class="collapse-header"> Créer:</h6>
+      <a class="collapse-item" href="/employe">Inscrire un Employé</a>
+      <a class="collapse-item" href="/entreprises">Inscrire une Entreprise</a>
+      <a class="collapse-item" href="/clients">Ajouter un  client</a>
+      <a class="collapse-item" href="/secteurs">Ajouter un secteur</a>
+      <a class="collapse-item" href="/metiers">Ajouter un metier</a>
+    </div>
+  </div>
+</li>
+
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+    <i class="fas fa-fw fa-cog"></i>
+    <span>Relation</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Personnalisés:</h6>
+            <a class="collapse-item" href="/eseadmin">Employé-Entreprise</a>
+            <a class="collapse-item" href="/cliententreprise">Client-Entreprise</a>
+          </div>
+        </div>
+      </li>
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+
+<!-- Heading -->
+<div class="sidebar-heading">
+  Entreprise
+</div>
+
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+    <i class="fas fa-fw fa-folder"></i>
+    <span>Pages</span>
+  </a>
+  <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <h6 class="collapse-header">Login Screens:</h6>
+      <a class="collapse-item" href="login.html">Login</a>
+      <a class="collapse-item" href="register.html">Register</a>
+      <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+      <div class="collapse-divider"></div>
+      <h6 class="collapse-header">Other Pages:</h6>
+      <a class="collapse-item" href="404.html">404 Page</a>
+      <a class="collapse-item" href="blank.html">Blank Page</a>
+    </div>
+  </div>
+</li>
+
+<!-- Nav Item - Charts -->
+<li class="nav-item">
+  <a class="nav-link" href="/entreprises">
+    <i class="fas fa-fw fa-chart-area"></i>
+    <span>Liste des Entreprises</span></a>
+</li>
+
+<!-- Nav Item - Tables -->
+<li class="nav-item">
+  <a class="nav-link" href="/inscris">
+    <i class="fas fa-fw fa-table"></i>
+    <span>Selectionner des Inscris</span></a>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block">
+
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
+
+</ul>
+
+
+<!-- End of Sidebar -->
+
+
+<div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Ajoutez un Employé</h1>
+          </div>
                     <form method="GET" action="{{ route('eseuser') }}" name="add_user">
                     {{ csrf_field() }}
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control bg @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="nom complet">
                                 <span class="text-danger">{{ $errors->first('name') }}</span>                
                             </div>
                         </div>
@@ -17,7 +161,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control bg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="email">
                                 <span class="text-danger">{{ $errors->first('email') }}</span>
                             </div>
                         </div>
@@ -25,7 +169,7 @@
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control bg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="mot de passe">
                                 <span class="text-danger">{{ $errors->first('password') }}</span>
                             </div>
                         </div>
@@ -34,7 +178,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control bg" name="password_confirmation" required autocomplete="new-password" placeholder="confirmer mot de passe">
                             </div>
                         </div>
 
@@ -42,17 +186,39 @@
                             <label for="telephone" class="col-md-4 col-form-label text-md-right">Telephone</label>
 
                             <div class="col-md-6">
-                                <input id="telephone" type="text" class="form-control" name="telephone" value="{{ old('telephone') }}" required  placeholder="Enter telephone">
+                                <input id="telephone" type="text" class="form-control bg" name="telephone" value="{{ old('telephone') }}" required  placeholder="telephone">
                                 <span class="text-danger">{{ $errors->first('telephone') }}</span>
                             </div>
                
                             <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btna">
-                                   Register
+                                   Enregistrer
                                 </button>
                             </div>
                         </div>
                     </form>
               
-@endsection
+                    </div>
+    <!-- Bootstrap core JavaScript-->
+ <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="../js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="../vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="../js/demo/chart-area-demo.js"></script>
+  <script src="../js/demo/chart-pie-demo.js"></script>
+
+</body>
+
+</html>
+
+

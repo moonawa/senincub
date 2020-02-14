@@ -12,17 +12,22 @@
     <style>
     body{
     background-color: #27245f;
+    color: white;
     }
-    .container{
+    /* .container{
     background: #c2c72f;
     padding: 4%;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
-    }
+    } */
 
     .btna{
-      background: #27245f;
+      background: #c2c72f;
       color: white;
+    }
+    .bg {
+      background: rgba(0, 0, 0, 0.4);
+      color:#27245f;
     }
     </style>
   </head>

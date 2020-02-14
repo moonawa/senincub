@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'telephone', 'role_id'
+        'name', 'email', 'password', 'telephone'
     ];
 
     /**entreprises
@@ -54,13 +54,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Entreprises');
     }
-    /**
-     * One to Many relation
-     *
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+    
     public function roles()
     {
-        return $this->belongsTo('App\Roles');
+        return $this->belongsToMany('App\Roles');
     }
 }

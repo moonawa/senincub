@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Inscris;
 use App\Secteur;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Order;
+use App\Mail\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
 class InscrisController extends Controller
@@ -78,6 +81,20 @@ class InscrisController extends Controller
         return $inscris;
 
     }
+     /**
+     * Ship the given order.
+     *
+     * @param  Request  $request
+     * @param  int  $orderId
+     * @return Response
+     */
+   public function selectionner(Request $request, $orderId){
+        $order = Inscris::findOrFail($orderId);
+
+        // Ship order...
+
+        Mail::to($request->inscris())->send(new Contact($order));
+   }
 
     /**
      * Display the specified resource.
@@ -90,10 +107,7 @@ class InscrisController extends Controller
          
     }
 
-    public function select(){
-        
-    }
-
+    
   
     
 }

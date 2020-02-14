@@ -127,7 +127,7 @@ class ClientController extends Controller
     $post = \App\Client::whereMail($email)->first();
     $category_id = \App\Entreprises::whereMail($emails)->first()->id;
     $post->entreprises()->attach($category_id);
-    return 'weiiiiiiiiiiii';
+    return Redirect::to('clients')->with('success','client deleted successfully');
     }
     //enlever la relation "admin - entreprise incubé"
     public function detachclientese(Request $request){
@@ -137,7 +137,7 @@ class ClientController extends Controller
         $post = \App\Client::whereMail($email)->first();
         $category_id = \App\Entreprises::whereMail($emails)->first()->id;
         $post->entreprises()->detach($category_id);
-        return 'weiiiiiiiiiiii';
+        return Redirect::to('clients')->with('success','client deleted successfully');
         }
    
 }

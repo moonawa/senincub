@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/super';
 
     /**
      * Create a new controller instance.
@@ -89,8 +89,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'telephone' => $data['telephone'],
-            'role_id' => $role
-        ]); 
+        ]);
+        $user->roles()->attach($role); 
         $user->metiers()->attach($metier);
         $user->entreprises()->attach($entreprise);
         return $user;
