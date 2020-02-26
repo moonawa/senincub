@@ -1,14 +1,17 @@
-@include('incube')
+@include('sidebar')
 <!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Register</div>
                 <div class="card-body"> -->
+                <h1>{{ Session:: get('message')}}</h1>
+
                <center> <h1>Ajoutez un membre dans votre équipe </h1></center>
+
                     <form method="GET" action="{{ route('createuserincube') }}">
                     {{ csrf_field() }}                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nom</label>
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="nom">
                                 @error('name')
@@ -19,7 +22,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail </label>
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="email">
 
@@ -31,7 +34,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Mot de Passe</label>
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="mot de passe">
                                 @error('password')
@@ -42,7 +45,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirmer Mot de Passe</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="confimer le mot de passe">
@@ -76,8 +79,8 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btna">
-                                  Inscrire
+                                <button type="submit" class="btn btn-success">
+                                  Inscrire 
                                 </button>
                             </div>
                         </div>
@@ -87,4 +90,4 @@
         </div>
     </div>
 </div> -->
-
+@include('layouts.back-footer')

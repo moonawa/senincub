@@ -18,7 +18,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $data['clients'] = Client::orderBy('id','desc')->paginate(10);
+        $data['clients'] = Client::orderBy('id','desc')->paginate(5);
    
         return view('client.clientlist',$data);
     }
@@ -35,7 +35,6 @@ class ClientController extends Controller
    
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -54,7 +53,7 @@ class ClientController extends Controller
 
         $client = Client::create($request->all());
         $client->entreprises()->attach($entreprise);
-        return Redirect::to('clients')->with('success','client create successfully');
+        return back()->with('success','client crée avec succes');
 
     }
     
@@ -102,8 +101,7 @@ class ClientController extends Controller
         $update = ['nom_complet' => $request->nom_complet, 'secteur_id' => $request->secteur_id];
         Client::where('id',$id)->update($update);
    
-        return Redirect::to('clients')
-       ->with('success','Great! client updated successfully');
+        return back()->with('success',' client modifié avec succes');
     }
    
     /**
@@ -115,29 +113,37 @@ class ClientController extends Controller
     {
         Client::where('id',$id)->delete();
    
-        return Redirect::to('clients')->with('success','client deleted successfully');
+        return back()->with('success','client supprimé avec  succes');
     }
   
      
     //allouer  un client à une entreprise incubé
     public function clientese(Request $request){
         
-    $email= $_GET["email"];
-    $emails= $_GET["emails"];
-    $post = \App\Client::whereMail($email)->first();
-    $category_id = \App\Entreprises::whereMail($emails)->first()->id;
+    $email= $_GET["nom_complet"];
+    $emails= $_GET["nom_entreprise"];
+    $post = \App\Client::whereNomComplet($email)->first();
+    $category_id = \App\Entreprises::whereNomEntreprise($emails)->first()->id;
     $post->entreprises()->attach($category_id);
-    return Redirect::to('clients')->with('success','client deleted successfully');
+    return back()->with('success','Allocation Réussit');
     }
     //enlever la relation "admin - entreprise incubé"
     public function detachclientese(Request $request){
         
-        $email= $_GET["email"];
-        $emails= $_GET["emails"];
-        $post = \App\Client::whereMail($email)->first();
-        $category_id = \App\Entreprises::whereMail($emails)->first()->id;
+        $email= $_GET["nom_complet"];
+        $emails= $_GET["nom_entreprise"];
+        $post = \App\Client::whereNomComplet($email)->first();
+        $category_id = \App\Entreprises::whereNomEntreprise($emails)->first()->id;
         $post->entreprises()->detach($category_id);
-        return Redirect::to('clients')->with('success','client deleted successfully');
+        return back()->with('success','Suppression de la relation Réussit');
         }
-   
+        public function searchclient(Request $request){
+            $search = $request->get('search');
+            $entreprise = DB::table('clients')->where('nom_complet', 'like', '%'.$search.'%')->paginate(5);
+            return view ('client.clientlist', ['clients' => $entreprise]);
+        }
+        public function ese(){
+            $entreprise = \App\Client::all();
+            return view('client.ensemble', compact('entreprise')); 
+        }
 }

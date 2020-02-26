@@ -54,7 +54,7 @@ class SecteurController extends Controller
         Secteur::create($request->all());
     
         return Redirect::to('secteurs')
-       ->with('success','Greate! secteur created successfully.');
+       ->with('success',' secteur crée avec succes.');
     }
     
     /**
@@ -100,7 +100,7 @@ class SecteurController extends Controller
         Secteur::where('id',$id)->update($update);
    
         return Redirect::to('secteurs')
-       ->with('success','Great! secteur updated successfully');
+       ->with('success',' secteur modifié avec succes ');
     }
    
     /**
@@ -113,7 +113,7 @@ class SecteurController extends Controller
     {
         Secteur::where('id',$id)->delete();
    
-        return Redirect::to('secteurs')->with('success','secteur deleted successfully');
+        return Redirect::to('secteurs')->with('success','secteur supprimé avec succes');
     }
   
     public function search(Request $request){

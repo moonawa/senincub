@@ -1,5 +1,5 @@
 
-@include('incube')
+@include('sidebar')
 
 
 
@@ -15,7 +15,7 @@
                  <th>Nom </th>
                  <th>Téléphone</th>
                  <th>Email</th>
-                 <th>Contacter</th>
+                 <th>Action</th>
               </tr>
            </thead>
            <tbody>
@@ -25,7 +25,7 @@
                  <td>{{$value->nom_complet}}  </td>
                  <td>{{ $value->telephone }}</td>
                  <td>{{ $value->mail }}</td>
-               
+                 <td><button class="btn btn-success">Contacter</button></td>
             
            
              @endforeach
@@ -41,3 +41,4 @@
     </body>
 </html>
 
+@include('layouts.back-footer')

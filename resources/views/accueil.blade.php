@@ -344,6 +344,9 @@
       width: 60px;
       height: 30px;
     }
+    .tex {
+      visibility: hidden;
+    }
   </style>
 </head>
 
@@ -383,7 +386,7 @@
             <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/search/top/?q=senincub&epa=SEARCH_BOX"><img class="ico" src="../img/Facebook-SenIncub.png" alt="facebook"></a></li>
             <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/sen-incub-incubateur-virtuel-6602a7191/"><img class="ico" src="../img/LinkedIn-SenIncub.png" alt="LinkedIn"></a></li>
             <li class="nav-item"><a class="nav-link" href="#"><img class="ico" src="../img/Twitter-SenIncub.png" alt="Twitter"></a></li>
-          </ul><br>
+          </ul><br><br>
           <a class="nav-link accuei " href="#actualites">
             <p class="accueil"> Actualités</p>
           </a>
@@ -401,7 +404,7 @@
           <ul class="nav nav-pills nav-fill ">
             <li class="nav-item"><a class="nav-link" href="#inscription"><input class="btn  btna " type="submit" value="S'inscrire"></a></li>
             <li class="nav-item"><a class="nav-link" href="/login"><input class="btn btna " type="submit" value="Se Connecter"></a></li>
-          </ul><br>
+          </ul><br><br>
           <a class="nav-link accuei " href="#">
             <p class="accueil">Contact</p>
           </a>
@@ -485,9 +488,9 @@
           </div>
           <div class="row">
             <div class="col-md-6"><img class="logo" src="../img/logo-senincub.png" alt=""></div>
-            <div class="col-md-6">
+            <div class="col-md-6 proposhover">
               <h6 class="p2">title</h6>
-              <p class="p2"> Les difficultés compromettent les entreprises</p>
+              <p class="text-truncate p2"> Les difficultés compromettent les entreprises</p>              
             </div>
           </div>
         </div>
@@ -499,7 +502,7 @@
             <div class="col-md-6"><img class="logo" src="../img/logo-senincub.png" alt=""></div>
             <div class="col-md-6">
               <h6 class="p2">title</h6>
-              <p class="p2"> Les difficultés compromettent les entreprises</p>
+              <p class="text-truncate p2"> Les difficultés compromettent les entreprises</p>
             </div>
           </div>
         </div>
@@ -514,7 +517,7 @@
             <div class="col-md-6"><img class="logo" src="../img/logo-senincub.png" alt=""></div>
             <div class="col-md-6">
               <h6 class="p2">title</h6>
-              <p class="p2"> Les difficultés compromettent les entreprises</p>
+              <p class="text-truncate p2"> Les difficultés compromettent les entreprises</p>
             </div>
           </div>
         </div>
@@ -526,7 +529,7 @@
             <div class="col-md-6"><img class="logo" src="../img/logo-senincub.png" alt=""></div>
             <div class="col-md-6">
               <h6 class="p2">title</h6>
-              <p class="p2"> Les difficultés compromettent les entreprises</p>
+              <p class="text-truncate p2"> Les difficultés compromettent les entreprises</p>
             </div>
           </div>
         </div>
@@ -548,15 +551,15 @@
 
       <div class="col-md-5">
         <div class="row ">
-          <div class="col-md-6"><img class="aru" src="../img/formation-en-entrepreneuriat.png" alt="sen"></div>
-          <div class="col-md-6"><img class="aru" src="../img/senincub22.png" alt="sen"></div>
+          <div class="col-md-6"><a href="../img/formation-en-entrepreneuriat.png"><img class="aru" src="../img/formation-en-entrepreneuriat.png" alt="sen"></a></div>
+          <div class="col-md-6"><a href="../img/senincub22.png"><img class="aru" src="../img/senincub22.png" alt="sen"></a></div>
         </div>
       </div>
-      <div class="col-md-2 ab"><img class="aru" src="../img/partenaires.png" alt="sen"></div>
+      <div class="col-md-2 ab"><a href="../img/partenaires.png"><img class="aru" src="../img/partenaires.png" alt="sen"></a></div>
       <div class="col-md-5">
         <div class="row ">
-          <div class="col-md-6"><img class="aru" src="../img/espace-virtuel.png" alt="sen"></div>
-          <div class="col-md-6"><img class="aru" src="../img/senincub5.png" alt="sen"></div>
+          <div class="col-md-6"><a href="../img/espace-virtuel.png"><img class="aru" src="../img/espace-virtuel.png" alt="sen"></a></div>
+          <div class="col-md-6"><a href="../img/senincub5.png"><img class="aru" src="../img/senincub5.png" alt="sen"></a></div>
         </div>
       </div>
 

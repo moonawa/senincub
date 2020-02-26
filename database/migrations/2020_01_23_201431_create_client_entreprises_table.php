@@ -8,7 +8,6 @@ class CreateClientEntreprisesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -16,6 +15,7 @@ class CreateClientEntreprisesTable extends Migration
         Schema::create('client_entreprises', function (Blueprint $table) {
             $table->integer('client_id')->unsigned();
             $table->integer('entreprises_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }

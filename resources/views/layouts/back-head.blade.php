@@ -10,6 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Senincub</title>
+  <link rel="icon" type="image/png" href="../img/logo-senincub.png" />
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -63,10 +64,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header"> Créer:</h6>
-            <a class="collapse-item" href="/entreprises">Inscrire une Entreprise</a>
-            <a class="collapse-item" href="/clients">Ajouter un  client</a>
-            <a class="collapse-item" href="/secteurs">Ajouter un secteur</a>
-            <a class="collapse-item" href="/metiers">Ajouter un metier</a>
+            <a class="collapse-item" href="/cltcreate">Ajouter un  client</a>
           </div>
         </div>
       </li>
@@ -80,7 +78,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Personnalisés:</h6>
-            <a class="collapse-item" href="/cliententreprise">Client-Entreprise</a>
+            <a class="collapse-item" href="/cltese">Client-Entreprise</a>
           </div>
         </div>
       </li>
@@ -97,27 +95,29 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <span>Voir</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+            <h6 class="collapse-header">Entreprises</h6>
+            <a class="collapse-item" href="/conserné">Entreprises</a>
             <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
+            <h6 class="collapse-header">Collègues</h6>
+            <a class="collapse-item" href="/employess">Collègues</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="/entreprises">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Liste des Entreprises</span></a>
+      <a class="nav-link collapsed" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Se Déconnecter
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
       </li>
 
       <!-- Nav Item - Tables -->
@@ -155,7 +155,35 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="{{ route('notification.index') }}" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Messages -->
+                @if(auth()->user()->unreadNotifications->count())
+                <span class="badge badge-danger badge-counter">
+                    <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-4 up-2 left-1" style="color: black; font-weight:900">{{ auth()->user()->unreadNotifications->count() }}</span>
+                </span>
+                @endif
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header">Notification</h6>
+                <div><a href=" {{ route('markRead')}} " style="color: green">Marquer tout comme lu</a> </div>
+                @foreach(auth()->user()->unreadNotifications as $notification)
+                <div class="dropdown-item d-flex align-items-center" >
+                  <div class="dropdown-list-image mr-3" >
+                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+                    <div class="status-indicator bg-success"></div>
+                  </div>
 
+                  <div class="font-weight-bold" style="background-color: lightgray">
+                    <div class="text-truncate" > {{$notification->data['data']}}</div>
+                    <div class="small text-gray-500">{{$notification->data['data']}} · 58m</div>
+                  </div>
+</div>
+                @endforeach
+               
+          </li>
             
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -171,7 +199,7 @@
                 <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  Se Déconnecter
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

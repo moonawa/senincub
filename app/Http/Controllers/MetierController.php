@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Metier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class MetierController extends Controller
@@ -16,9 +17,15 @@ class MetierController extends Controller
     public function index()
     {
          $data['metiers'] = Metier::orderBy('id','desc')->paginate(10);
+         if(Auth::user()->roles->pluck('nom')->contains('SUPERADMIN')) { 
+
    
          return view('metier.metierlist',$data);
-
+         }
+         else{
+            return view('incube.metierlist',$data);
+ 
+         }
         $metiers = Metier::all();
         $select = [];
         foreach($metiers as $department){
@@ -34,7 +41,14 @@ class MetierController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->roles->pluck('nom')->contains('SUPERADMIN')) { 
+
         return view('metier.metiercreate');
+        }
+        else{
+            return view('incube.metiercreate');
+
+         }
     }
    /**
      * Store a newly created resource in storage.
@@ -52,8 +66,7 @@ class MetierController extends Controller
    
         Metier::create($request->all());
     
-        return Redirect::to('metiers')
-       ->with('success','Greate! metier created successfully.');
+        return back()->with('success','metier ajouté avec succes.');
     }
     
     /**
@@ -77,8 +90,14 @@ class MetierController extends Controller
     {   
         $where = array('id' => $id);
         $data['metier_info'] = Metier::where($where)->first();
- 
+        if(Auth::user()->roles->pluck('nom')->contains('SUPERADMIN')) { 
+
         return view('metier.metieredit', $data);
+        }
+        else{
+            return view('incube.metieredit', $data);
+
+         }
     }
    
     /**
@@ -98,8 +117,8 @@ class MetierController extends Controller
         $update = ['nom' => $request->nom,];
         Metier::where('id',$id)->update($update);
    
-        return Redirect::to('metiers')
-       ->with('success','Great! metier updated successfully');
+        return back()
+       ->with('success',' metier modifié avec succes');
     }
    
     /**
@@ -112,6 +131,6 @@ class MetierController extends Controller
     {
         Metier::where('id',$id)->delete();
    
-        return Redirect::to('metiers')->with('success','metier deleted successfully');
+        return back()->with('success','metier supprimé avec succes');
     }
 }

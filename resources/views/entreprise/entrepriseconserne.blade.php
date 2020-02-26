@@ -1,30 +1,28 @@
 
-@extends('entreprise.entrepriselayout')
-@section('content')
+@include('layouts.back-head')
 
 
    <div>
-   @foreach($user as $use)               
-     <p>{{$use->name}}</p>  
-
+   @foreach($categories as $category)               
+     <p>{{$category->name}}</p>  
+     
             <table class="table table-bordered" id="laravel_crud">
            <thead>
               <tr>
                  <th>Nom </th>
                  <th>Téléphone</th>
                  <th>Email</th>
-                 <th>Secteur</th>
-                 <th>Contacter</th>
+                 <th>Action</th>
               </tr>
            </thead>
            <tbody>
            
-            @foreach( $use->entreprises as $value)
+            @foreach($category->entreprises as $post)
             <tr>
-                 <td>{{$value->nom_entreprise}}  </td>
-                 <td>{{ $value->telephone }}</td>
-                 <td>{{ $value->mail }}</td>
-               
+                 <td>{{$post->nom_entreprise}}  </td>
+                 <td>{{ $post->telephone }}</td>
+                 <td>{{ $post->mail }}</td>
+                 <td><button class="btn btn-success">Contacter</button></td> 
             
            
              @endforeach
@@ -39,4 +37,4 @@
     </body>
 </html>
 
-@endsection 
+@include('layouts.back-footer')

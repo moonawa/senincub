@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Entreprises;
 use App\Metier;
+use App\Notifications\Rendu;
 use App\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -22,7 +24,47 @@ class UserController extends Controller
      */
     public function index()
     {
-       
+        $data['users'] = User::orderBy('id','desc')->paginate(5);
+        return view('superadmin.usersadarwa',$data);
+        
+    }
+    /**
+     * Display the specified resource.
+     * @param  \App\Entreprises  $entreprise
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Entreprises $entreprise)
+    {    
+            
+    }
+    public function edit($id)
+    {   
+        $where = array('id' => $id);
+        $data['user_info'] = User::where($where)->first();
+        return view('superadmin.useredit', $data);
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'telephone' => 'required',
+            'email' => 'required',
+        ]);       
+        $update = ['name' => $request->name, 'telephone' => $request->telephone, 'email' => $request->email];
+        User::where('id',$id)->update($update);
+        return back()
+       ->with('success',' Utilisateur modifié  avec succes');
+    }
+    public function destroy($id)
+    {
+        User::where('id',$id)->delete();  
+        return back()->with('success','Utilisateur supprimé avec succes');
+    }
+
+    public function searchuser(Request $request){
+        $search = $request->get('search');
+        $entreprise = DB::table('users')->where('name', 'like', '%'.$search.'%')->paginate(5);
+        return view ('superadmin.userlist', ['users' => $entreprise]);
     }
     /**
      * Show the application's login form.
@@ -63,7 +105,7 @@ class UserController extends Controller
         $user->roles()->attach($role);
         $user->metiers()->attach($metier);
         $user->entreprises()->attach($entreprise);       
-        return back(); 
+        return back()->with('message', 'Employe ajouté avec succes!!!'); 
 }
 //route pour créer un userincube de l'incube qui s'est connecté
 protected function createuserincube(Request $request)
@@ -92,7 +134,7 @@ protected function createuserincube(Request $request)
         $user->metiers()->attach($metier);
         $user->entreprises()->attach($entreprise);
         
-        return Redirect::to('/incube');
+        return back()->with('message', 'membre ajouté avec succes!!!'); 
 }
 
 //liste des entreprises d'un admin connectée
@@ -101,7 +143,21 @@ public function ese(User $user){
     $user = User::with('entreprises')->where('id', '=', Auth::user()->id)->get();
     return view('entreprise.entrepriseconserne', compact('user'));
     
-      
-
 }
+
+public function sendNotification()
+    {
+        $user = User::first();
+  
+        $details = [
+            'envoyeur' => '1',
+            'message' => 'This is my first notification from ItSolutionStuff.com',
+            'receveur' => '2'
+            
+        ];
+  
+        Notification::send($user, new Rendu($details));
+   
+        dd('done');
+    }
 }
