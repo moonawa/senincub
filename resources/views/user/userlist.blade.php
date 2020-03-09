@@ -17,7 +17,7 @@
                  <th>Téléphone</th>
                  <th>Email</th>
                  <th>Métier</th>
-                 <th>Action</th>
+                 <th>Taches</th>
               </tr>
            </thead>
            <tbody>
@@ -30,8 +30,9 @@
                  @foreach($values->metiers as $val)
                  <td>{{ $val->nom }}</td>
                @endforeach
-                 <td><button class="btn btn-success">Contacter</button></td> 
-           
+                 @foreach($values->taches as $va)
+                 <td>{{ $va->description }}</td>
+               @endforeach
              @endforeach
              </tbody>
           </table>

@@ -34,6 +34,7 @@
                  <td>{{ $product->nom_entreprise }}</td>
                  <td>{{ $product->telephone }}</td>
                  <td>{{ $product->mail }}</td>
+  
                  <td><a href="{{ route('entreprises.edit',$product->id)}}" class="btn btn-success">Modifier</a></td>
                  
                 <td><a class="btn btn-success" href="ensemble">Détails</a> </td>

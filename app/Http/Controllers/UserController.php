@@ -160,4 +160,11 @@ public function sendNotification()
    
         dd('done');
     }
+
+        //function recherche par nom des users
+        public function rechercheUser(Request $request){
+            $search = $request->get('rechercheUser');
+            $user = DB::table('users')->where('name', 'like', '%'.$search.'%')->paginate(5);
+            return view('superadmin.usersadarwa', ['users' => $user]);
+        }
 }

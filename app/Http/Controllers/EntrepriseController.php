@@ -96,9 +96,8 @@ class EntrepriseController extends Controller
             'nom_entreprise' => 'required',
             'telephone' => 'required',
             'mail' => 'required',
-            'secteur_id' => 'required',
         ]);       
-        $update = ['nom_entreprise' => $request->nom_entreprise, 'secteur_id' => $request->secteur_id];
+        $update = ['nom_entreprise' => $request->nom_entreprise, 'telephone' => $request->telephone, 'mail' => $request->mail];
         Entreprises::where('id',$id)->update($update);
         return Redirect::to('entreprises')
        ->with('success',' Entreprise modifiée  avec succes');
@@ -134,6 +133,7 @@ class EntrepriseController extends Controller
      * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
+    //vue a entreprise.entrepriseuser
     public function eseuser(Request $request){            
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -158,34 +158,29 @@ class EntrepriseController extends Controller
             return back()->with('success','l\'Entreprise et son Utilisateur ont été crée avec succes');
         }
 
-        //function recherche par mail et ensuite il te transmet la lign ede user qui correspond à cet email
-        public function rechercheUser(Request $request){
-            $search = $request->get('rechercheUser');
-            $user = DB::table('users')->where('email', 'like', '%'.$search.'%')->paginate(5);
-            return view('entreprise.entrpriseadmin');
-        }
 
         //allouer  un admin à une entreprise incubé
+        //vue entreprise.entrepriseadmin
         public function alloue(Request $request){           
         $email= $_GET["name"];
         $emails= $_GET["nom_entreprise"];
         $post = \App\User::whereName($email)->first();
-        $category_id = \App\Entreprises::whereNomEntreprise($emails)->first()->id;
+        $category_id = \App\Entreprises::whereNomEntreprise($emails)->get();
         $post->entreprises()->attach($category_id);
         return back()
         ->with('success',' Allocation réussit');
         }
 
         //enlever la relation "admin - entreprise incubé"
+                //vue entreprise.entrepriseadmin
         public function detach(Request $request){         
             $email= $_GET["name"];
             $emails= $_GET["nom_entreprise"];
             $post = \App\User::whereName($email)->first();
-            $category_id = \App\Entreprises::whereNomEntreprise($emails)->first()->id;
+            $category_id = \App\Entreprises::whereNomEntreprise($emails)->get();
             $post->entreprises()->detach($category_id);
-        
             return back()
-            ->with('success','suppression de la relation avec success');
+            ->with('successs','suppression de la relation avec success');
         }
 
         //lister les entreprises en fonction des users consernés
@@ -199,12 +194,11 @@ class EntrepriseController extends Controller
         public function equipe(Entreprises $categories){
             $categories = \App\Entreprises::all();
             return view('user.equipe', compact('categories'));                
-
         }
 
         //liste des employés d'une entreprise connectée
         public function employess(Entreprises $entreprise){ 
-            $entreprise = User::with('entreprises')->where('id', '=', Auth::user()->id)->get();   
+            $entreprise = User::with('entreprises')->where('id', '=', Auth::user()->id)->get();  
             if(Auth::user()->roles->pluck('nom')->contains('INCUBE')) {
             return view('user.userlist', compact('entreprise')); 
         }
@@ -242,5 +236,20 @@ class EntrepriseController extends Controller
             $entreprise = \App\Entreprises::all();
             return view('entreprise.ensemble', compact('entreprise')); 
         }
-        
+        public function nombre(){
+            $collection =  \App\Inscris::all();
+            $collection->count();
+            return view('superadmin');
+        }
+        //liste des clients d'une entreprise connectée
+        public function prestationsss(User $entreprise){   
+            $entreprise = User::with('entreprises')->where('id', '=', Auth::user()->id)->get();      
+            if(Auth::user()->roles->pluck('nom')->contains('INCUBE')) { 
+            return view('prestataire.prestataireconserne', compact('entreprise'));      
+            }
+            else{
+                return view('userincube.nosclient', compact('entreprise'));  
+    
+            } 
+        }
     }

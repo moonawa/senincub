@@ -60,4 +60,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Roles');
     }
+    public function taches()
+    {
+        return $this->belongsToMany('App\Tache');
+    }
 }

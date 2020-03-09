@@ -64,8 +64,9 @@
             <h6 class="collapse-header"> Créer:</h6>
             <a class="collapse-item" href="/employe">Inscrire un Employé</a>
             <a class="collapse-item" href="{{route('entreprises.create') }}">Inscrire une Entreprise</a>
-            <a class="collapse-item" href="/clients">Ajouter un  client</a>
+            <a class="collapse-item" href="{{route('clients.create') }}">Ajouter un  client</a>
             <a class="collapse-item" href="/secteurs">Ajouter un secteur</a>
+            <a class="collapse-item" href="/taches">Ajouter une tache</a>
             <a class="collapse-item" href="/metiers">Ajouter un metier</a>
           </div>
         </div>
@@ -82,6 +83,7 @@
             <h6 class="collapse-header">Personnalisés:</h6>
             <a class="collapse-item" href="/eseadmin">Employé-Entreprise</a>
             <a class="collapse-item" href="/cliententreprise">Client-Entreprise</a>
+            <a class="collapse-item" href="/allocationtache">Utilisateur-Tache</a>
           </div>
         </div>
       </li>
@@ -105,15 +107,24 @@
             <h6 class="collapse-header">Incubé</h6>
             <a class="collapse-item" href="/entreprises">Entreprises</a>
             <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Sadarwa</h6>
-            <a class="collapse-item" href="/users">Employe</a>
+            <h6 class="collapse-header">SADARWA</h6>
+            <a class="collapse-item" href="/employess">Mes Employés</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Prestataires</h6>
+            <a class="collapse-item" href="/prestataires">Prestataires de Services</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Client</h6>
+            <a class="collapse-item" href="/clients">Client</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Utilisateurs</h6>
+            <a class="collapse-item" href="/users">Utilisateurs du système</a>
           </div>
         </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/inscris">
           <i class="fas fa-fw fa-table"></i>
-          <span>Selectionner des Inscris</span></a>
+          <span>Selectionner des Inscrits</span></a>
       </li>
 
       <!-- Nav Item - Charts -->
@@ -154,47 +165,10 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-
-            <!-- Ce Que j'ai enlevé -->
-          <!-- Topbar Search -->
-
-         
-
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="{{ route('notification.index') }}" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                @if(auth()->user()->unreadNotifications->count())
-                <span class="badge badge-danger badge-counter">
-                    <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-4 up-2 left-1" style="color: black; font-weight:900">{{ auth()->user()->unreadNotifications->count() }}</span>
-                </span>
-                @endif
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header"><a href="{{ route('notification.index') }}">
-                  Message Center</a>
-                </h6>
-                <div><a href=" {{ route('markRead')}} " style="color: green">Marquer tout comme lu</a> </div>
-                @foreach(auth()->user()->unreadNotifications as $notification)
-                <a class="dropdown-item d-flex align-items-center" href="{{ route('notification.index') }}">
-                  <div class="dropdown-list-image mr-3" >
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-
-                  <div class="font-weight-bold" style="background-color: lightgray">
-                    <div class="text-truncate" > {{$notification->data['message']}}</div>
-                    <div class="small text-gray-500">{{$notification->data['nom']}} · 58m</div>
-                  </div>
-                </a>
-                @endforeach
-               
-          </li>
+          <!-- Ce Que j'ai enlevé -->
+          <!-- Topbar Search --><!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">   
      <div class="topbar-divider d-none d-sm-block"></div>
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -212,11 +186,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-               
               </div>
-
-            </li>
-
-    
+            </li>   
     </ul>
         </nav>

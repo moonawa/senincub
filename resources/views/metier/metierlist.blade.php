@@ -24,13 +24,7 @@
                  <td>{{ $product->nom }}</td>
                 
                  <td><a href="{{ route('metiers.edit',$product->id)}}" class="btn btn-success">Modifier</a></td>
-                 <td>
-                 <form action="{{ route('metiers.destroy', $product->id)}}" method="post">
-                  {{ csrf_field() }}
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Supprimer</button>
-                </form>
-                </td>
+                
               </tr>
               @endforeach
            </tbody>

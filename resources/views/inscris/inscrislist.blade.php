@@ -22,9 +22,9 @@
                     <td>{{ $product->telephone }}</td>
                     <td>{{ $product->mail }}</td>
                     <td>{{ $product->nom_projet }}</td>
-                 
+                   
                    <td>
-                     <a href="mailto:$product->mail" target="blank" class="btn btna"> Sélectionner </a>
+                     <a href="mailto:$product->mail" target="blank" class="btn btn-success"> Sélectionner </a>
                    </td>
                  </tr>
 

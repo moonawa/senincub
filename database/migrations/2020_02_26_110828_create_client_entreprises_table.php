@@ -15,8 +15,17 @@ class CreateClientEntreprisesTable extends Migration
         Schema::create('client_entreprises', function (Blueprint $table) {
             $table->integer('client_id')->unsigned();
             $table->integer('entreprises_id')->unsigned();
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
+        });
+        Schema::table('client_entreprises', function(Blueprint $table) {
+            $table->foreign('client_id')->references('id')->on('clients')
+                        ->onDelete('cascade')
+                        ->onUpdate('cascade');
+        });
+        Schema::table('client_entreprises', function(Blueprint $table) {
+            $table->foreign('entreprises_id')->references('id')->on('entreprises')
+                        ->onDelete('cascade')
+                        ->onUpdate('cascade');
         });
     }
 
@@ -30,3 +39,5 @@ class CreateClientEntreprisesTable extends Migration
         Schema::dropIfExists('client_entreprises');
     }
 }
+
+

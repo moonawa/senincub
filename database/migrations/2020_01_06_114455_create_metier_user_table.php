@@ -19,6 +19,16 @@ class CreateMetierUserTable extends Migration
             $table->timestamps();
 
         });
+        Schema::table('metier_user', function(Blueprint $table) {
+            $table->foreign('metier_id')->references('id')->on('metiers')
+                        ->onDelete('cascade')
+                        ->onUpdate('cascade');
+        });
+        Schema::table('metier_user', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')
+                        ->onDelete('cascade')
+                        ->onUpdate('cascade');
+        });
     }
 
     /**

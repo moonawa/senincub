@@ -10,7 +10,7 @@
 <div class="col-md-6">
   <form action="/searchclient" method="GET">
    <div class="input-group">
-      <input type="search" name="search" placeholder="recherche par nom client" class="form-control">
+      <input type="search" name="searchclient" placeholder="recherche par nom client" class="form-control">
       <span class="input-group-prepend">
          <button type="submit" class="btn btn-success">Rechercher</button>
       </span>
@@ -31,7 +31,7 @@
                  <th>Nom client</th>
                  <th>Téléphone</th>
                  <th>Email</th>
-                 <td colspan="2">Action</td>
+                 <th>Action</th>
 
               </tr>
            </thead>
@@ -42,9 +42,8 @@
                  <td>{{ $product->telephone }}</td>
                  <td>{{ $product->mail }}</td>
                 
-                 <td><a href="{{ route('clients.edit',$product->id)}}" class="btn btn-success">Modifier</a></td>
                 <td><a href="/ensembles" class="btn btn-success">Détails</a></td>
-                
+               
               </tr>
               @endforeach
            </tbody>

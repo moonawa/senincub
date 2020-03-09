@@ -64,6 +64,7 @@
             <h6 class="collapse-header"> Voir:</h6>
             <a class="collapse-item" href="/employess">Mon Equipe</a>
             <a class="collapse-item" href="/clientsss">Mes Client</a>
+            <a class="collapse-item" href="/prestationsss">Mes Prestataires</a>
           </div>
         </div>
       </li>
@@ -77,8 +78,11 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Personnalisés:</h6>
-            <a class="collapse-item" href="/userincubes">Un membre</a>
-            <a class="collapse-item" href="/metiers">Un metier</a>
+            <a class="collapse-item" href="/userincubes">Un Membre</a>
+            <a class="collapse-item" href="{{route('prestataires.create') }}">Un Prestataire</a>
+            <a class="collapse-item" href="{{route('clients.create') }}">Un Client</a>
+            <a class="collapse-item" href="/taches">Une Tache</a>
+            <a class="collapse-item" href="/metiers">Un Metier</a>
           </div>
         </div>
       </li>

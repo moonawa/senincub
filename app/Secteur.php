@@ -32,6 +32,10 @@ class Secteur extends Model
     {
         return $this->hasMany('App\Client');
     }
+    public function prestataires()
+    {
+        return $this->hasMany('App\Prestataire');
+    }
  
    
 }

@@ -14,13 +14,18 @@ class CreateInscrisTable extends Migration
     public function up()
     {
         Schema::create('inscris', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('nom_complet');    
             $table->string('telephone')->unique();   
             $table->string('mail')->unique();
             $table->string('nom_projet')->unique();   
             $table->integer('secteur_id')->unsigned(); 
             $table->timestamps();
+        });
+        Schema::table('inscris', function(Blueprint $table) {
+            $table->foreign('secteur_id')->references('id')->on('secteurs')
+                        ->onDelete('restrict')
+                        ->onUpdate('restrict');
         });
     }
 

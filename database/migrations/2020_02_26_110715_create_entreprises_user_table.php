@@ -18,6 +18,17 @@ class CreateEntreprisesUserTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
+
+        Schema::table('entreprises_user', function(Blueprint $table) {
+            $table->foreign('entreprises_id')->references('id')->on('entreprises')
+                        ->onDelete('cascade')
+                        ->onUpdate('cascade');
+        });
+        Schema::table('entreprises_user', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')
+                        ->onDelete('cascade')
+                        ->onUpdate('cascade');
+        });
     }
 
     /**

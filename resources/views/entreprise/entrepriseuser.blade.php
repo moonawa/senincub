@@ -6,7 +6,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Ajoutez un utilisareur à l'entreprise que vous venez de créer</h1>
+            <h1 class="h3 mb-0 text-gray-800">Ajoutez un utilisateur à l'entreprise que vous venez de créer</h1>
           </div>
                     <form method="GET" action="{{ route('eseuser') }}" name="add_user">
                     {{ csrf_field() }}

@@ -28,4 +28,9 @@ class Entreprises extends Model
     {
         return $this->belongsToMany('App\Client');
     }
+    public function prestataires()
+    {
+        return $this->belongsToMany('App\Prestataire');
+    }
+   
 }

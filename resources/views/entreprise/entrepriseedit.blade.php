@@ -38,15 +38,7 @@
         </div>
     </div>
 
-    <div class="col-md-12">
-              <select name="secteur_id">
-                {{-- <option value="" >Secteur</option> --}}
-                @foreach(App\Secteur::get() as $secteur)
-               
-                <option name="secteur_id" value="{{$secteur->id}}">{{$secteur->nom}}</option>
-                @endforeach
-              </select>
-          </div> 
+
 
     <div class="col-md-12">
     <button type="submit" class="btn btn-success">Modifier</button>

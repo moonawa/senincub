@@ -32,7 +32,7 @@ Route::name ('notification.')->prefix('notification')->group(function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::get('/nombre', 'EntrepriseController@nombre')->name('nombre');
 
 
 //******************************POUR LE SUPERADMIN ********************************/
@@ -44,6 +44,7 @@ Route::get('/super', function () {
     return view('superadmin');});
 
  Route::get('markAsRead', function()  {
+     
      auth()->user()->unreadNotifications->markAsRead();
      return back();
  })->name('markRead');
@@ -53,6 +54,13 @@ Route::get('/employe', function () {return view('registeremploye');});
 Route::resource('entreprises', 'EntrepriseController');
 //route pour la cherche par nom des entreprises
 Route::get('/search', 'EntrepriseController@search');
+//route pour la cherche par nom des prestation
+Route::get('/searchprestataire', 'PrestationController@searchprestataire');
+//route pour la cherche par nom des client
+Route::get('/searchclient', 'ClientController@searchclient');
+
+//route pour la cherche par nom des users
+Route::get('/rechercheUser', 'UserController@rechercheUser');
 //route pour creer un utilisateur de role incubé à l'entreprise qu'on vient de creer
 Route::get('eseuser','EntrepriseController@eseuser' )->name('eseuser');
 //route pour la page d'allocation  et dedétachement d'un employé à une entreprise
@@ -87,6 +95,25 @@ Route::get('ensembles', 'ClientController@ese');
 Route::get('detail', 'EntrepriseController@detail')->name('detail');
 //route pour le crud user
 Route::resource('users', 'UserController');
+//route pour le crud taches
+Route::resource('taches', 'TacheController');
+//route pour la page d'allocation  et dedétachement d'un user-tache
+Route::get('/allocationtache', function () {return view('tache.tacheuser');});
+//route pour la fonction allouer  et détcaher des user-tache
+Route::get('/tacheuser', 'TacheController@tacheuser');
+Route::get('/detachtacheuser', 'TacheController@detach');
+
+Route::get('/entreprisetacheuser', 'TacheController@entreprisetacheuser');
+Route::get('/tace', function () {return view('tache.tacheuserentreprise');});
+
+Route::resource('prestataires', 'PrestationController');
+//route pour la page d'allocation  et dedétachement d'un prestataire à une entreprise
+Route::get('/prestataireentreprise', function () {return view('prestataire.prestataireentreprise');});
+//route pour  la fonction allouer et enlever des prestataires aux entreprises incubés
+Route::get('/prestataireese', 'PrestationController@prestataireese');
+Route::get('/detachprestataireese', 'PrestationController@detachprestataireese');
+//les prestataires et leurs entreprises
+Route::get('pres', 'PrestationController@ese');
 
 
 //****************************POUR L'ADMIN*********************************** */
@@ -109,7 +136,6 @@ Route::get('/cltese', function () {return view('admin.cltese');});
 Route::get('/cltcreate', function () {return view('admin.cltcreate');});
 
 
-
 //****************************POUR L'INCUBE ***************************** */
 //route pour le incube
 Route::get('/incube', function () {return view('incube');});
@@ -121,6 +147,7 @@ Route::get('createuserincube','UserController@createuserincube' )->name('createu
 Route::get('employess','EntrepriseController@employess' )->name('employess');
 //liste des clients d'une entreprise connectée
 Route::get('clientsss','EntrepriseController@clientsss' )->name('clientsss');
+Route::get('prestationsss','EntrepriseController@prestationsss' )->name('prestationsss');
 
 
 

@@ -14,7 +14,7 @@ class CreateSecteursTable extends Migration
     public function up()
     {
         Schema::create('secteurs', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('nom');
             $table->timestamps();
 

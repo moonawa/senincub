@@ -16,7 +16,7 @@
                  <th>Téléphone</th>
                  <th>Email</th>
                  <th>Metier</th>
-                 <td colspan="3">Action</td>
+                 <td colspan="3">Tache</td>
               </tr>
            </thead>
            <tbody>
@@ -28,15 +28,10 @@
                  @foreach($product->metiers as $prod)
                  <td>{{$prod->nom }}</td>
                  @endforeach
-                 <td><a href="{{ route('users.edit',$product->id)}}" class="btn btn-success">Modifier</a></td>
-                 <td><a class="btn btn-success" href="ensemble">Contacter</a> </td>
-                 <td>
-                 <form action="{{ route('users.destroy', $product->id)}}" method="post">
-                  {{ csrf_field() }}
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Supprimer</button>
-                </form>
-                </td>
+                 @foreach($product->taches as $pro)
+                 <td>{{$pro->description }}</td>
+                 @endforeach
+                
                  
               </tr>
               @endforeach

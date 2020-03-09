@@ -13,7 +13,7 @@
            <thead>
               <tr>
                  <th>Nom secteur</th>
-                 <th colspan="2">Action</th>
+                 <th >Action</th>
                  
               </tr>
            </thead>
@@ -23,13 +23,7 @@
                  <td>{{ $product->nom }}</td>
                 
                  <td><a href="{{ route('secteurs.edit',$product->id)}}" class="btn btn-success">Modifier</a></td>
-                 <td>
-                 <form action="{{ route('secteurs.destroy', $product->id)}}" method="post">
-                  {{ csrf_field() }}
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Supprimer</button>
-                </form>
-                </td>
+                 
               </tr>
               @endforeach
            </tbody>

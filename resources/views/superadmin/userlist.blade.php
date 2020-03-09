@@ -17,7 +17,8 @@
               <th>Téléphone</th>
               <th>Email</th>
               <th>Métier</th>
-              <th colspan="3">Action</th>
+              <th colspan="2">Action</th>
+              <th>Taches</th>
            </tr>
         </thead>
         <tbody>
@@ -31,14 +32,18 @@
                     <td>{{ $val->nom }}</td>
                 @endforeach
                 <td><a href="{{ route('users.edit',$values->id)}}" class="btn btn-success">Modifier</a></td> 
-                <td><button class="btn btn-success">Contacter</button></td>
 
                 <td>
                 <form action="{{ route('users.destroy', $values->id)}}" method="post">
                   {{ csrf_field() }}
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Supprimer</button>
-                </form>               </td>
+                </form>              
+                </td>
+                @foreach( $values->taches as $on)
+                 <td>{{ $on->description }}</td>
+                 @endforeach
+                
             </tr>
           @endforeach
           </tbody>

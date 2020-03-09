@@ -1,10 +1,6 @@
 @include('superadmin.bord')
 
-
 <div class="container-fluid">
-
-
-
 <br>
    <div class="row">
         <div class="col-12">
@@ -16,7 +12,6 @@
                  <th>Nom Entreprise </th>
                  <th>Téléphone</th>
                  <th>Email</th>
-                 <td colspan="2">Action</td>
               </tr>
            </thead>
            <tbody>
@@ -24,12 +19,8 @@
               <tr>
                  <td>{{ $product->nom_entreprise }}</td>
                  <td>{{ $product->telephone }}</td>
-                 <td>{{ $product->mail }}</td>
+                 <td>{{ $product->mail }}</td>    
                  
-                 <td><a class="btn btn-success" href="#">Contacter</a> </td>
-                 <td>
-                  <a href="/detach" class="btn btn-danger">Supprimer</a>
-                </td>
               </tr>
               @endforeach
            </tbody>

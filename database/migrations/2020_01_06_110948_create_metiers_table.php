@@ -14,7 +14,7 @@ class CreateMetiersTable extends Migration
     public function up()
     {
         Schema::create('metiers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('nom');  
             $table->timestamps();
         });

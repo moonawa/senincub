@@ -6,6 +6,7 @@ use App\Client;
 use App\Entreprises;
 use App\Secteur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -30,7 +31,12 @@ class ClientController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->roles->pluck('nom')->contains('SUPERADMIN')) { 
         return view('client.clientcreat');
+        }
+        else{
+            return view('incube.clientcreat'); 
+         }
     }
    
     /**
@@ -47,12 +53,8 @@ class ClientController extends Controller
             'secteur_id' => 'required',
 
         ]);
-        $secteurs = Secteur::all();      
-        $entreprise = Entreprises::all() ;
-        $entreprise = request('entreprise');
-
         $client = Client::create($request->all());
-        $client->entreprises()->attach($entreprise);
+        $client->entreprises()->attach($request->cats);
         return back()->with('success','client crée avec succes');
 
     }
@@ -118,27 +120,28 @@ class ClientController extends Controller
   
      
     //allouer  un client à une entreprise incubé
+    //vue a client.cliententreprise
     public function clientese(Request $request){
         
     $email= $_GET["nom_complet"];
     $emails= $_GET["nom_entreprise"];
     $post = \App\Client::whereNomComplet($email)->first();
-    $category_id = \App\Entreprises::whereNomEntreprise($emails)->first()->id;
+    $category_id = \App\Entreprises::whereNomEntreprise($emails)->get();
     $post->entreprises()->attach($category_id);
     return back()->with('success','Allocation Réussit');
     }
     //enlever la relation "admin - entreprise incubé"
-    public function detachclientese(Request $request){
-        
+        //vue a client.cliententreprise
+    public function detachclientese(Request $request){        
         $email= $_GET["nom_complet"];
         $emails= $_GET["nom_entreprise"];
         $post = \App\Client::whereNomComplet($email)->first();
-        $category_id = \App\Entreprises::whereNomEntreprise($emails)->first()->id;
+        $category_id = \App\Entreprises::whereNomEntreprise($emails)->get();
         $post->entreprises()->detach($category_id);
         return back()->with('success','Suppression de la relation Réussit');
         }
         public function searchclient(Request $request){
-            $search = $request->get('search');
+            $search = $request->get('searchclient');
             $entreprise = DB::table('clients')->where('nom_complet', 'like', '%'.$search.'%')->paginate(5);
             return view ('client.clientlist', ['clients' => $entreprise]);
         }

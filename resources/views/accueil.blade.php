@@ -650,6 +650,7 @@
  
   <!-- fin actualités -->
  
+  <h1>{{ Session:: get('success')}}</h1>
 
   <!-- inscription -->
   <div class="container-fluid m2">

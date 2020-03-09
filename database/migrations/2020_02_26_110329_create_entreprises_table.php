@@ -14,13 +14,18 @@ class CreateEntreprisesTable extends Migration
     public function up()
     {
         Schema::create('entreprises', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('nom_entreprise');
             $table->string('telephone')->unique();  
             $table->string('mail')->unique();
             $table->integer('secteur_id')->unsigned();
             $table->string('status')->nullable();
             $table->timestamps();
+        });
+        Schema::table('entreprises', function(Blueprint $table) {
+            $table->foreign('secteur_id')->references('id')->on('secteurs')
+                        ->onDelete('restrict')
+                        ->onUpdate('restrict');
         });
     }
 

@@ -62,8 +62,8 @@ class InscrisController extends Controller
         $inscris= Inscris::create($request->all());
         // $inscris->secteurs()->attach($secteurs);
     
-        return Redirect::to('inscris')
-       ->with('success','Greate! Entreprise created successfully.');
+        return back()
+       ->with('success','Votre inscription a été bien prise en compte, vous serez contacté ultérieurement');
     }
 
     protected function storer(array $data)

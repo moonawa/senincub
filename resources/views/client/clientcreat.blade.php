@@ -48,15 +48,14 @@
               </select>
           </div> 
 
-          <div class="col-md-12">
-              <select name="entreprise">
-                {{-- <option value="" >Entreprise</option> --}}
-                @foreach(App\Entreprises::get() as $secteur)              
-                <option name="entreprise" value="{{$secteur->id}}">{{$secteur->nom_entreprise}}</option>
-                @endforeach
-              </select>
-          </div> 
-
+          
+          <div class="select is-multiple col-md-12">
+    <select name="cats[]" multiple>
+    @foreach(App\Entreprises::get() as $user)
+            <option value="{{ $user->id }}" {{ in_array($user->id, old('cats') ?: []) ? 'selected' : '' }}>{{ $user->nom_entreprise }} </option>
+        @endforeach
+    </select>
+</div>
 
     <div class="col-md-12">
     <button type="submit" class="btn btn-success">Soumettre</button>
